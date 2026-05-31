@@ -10,8 +10,11 @@ type user = {
   id: number
   word: string
   def: string
-  sino: string
-  kont: string
+  api:string
+  etymology: string
+  nature: string
+  sino: string[]
+  kont: string[]
 
 }
 
@@ -66,12 +69,19 @@ function Result() {
               <ul className="md:text-lg text-sm">
                 {fil.map((user) => (
                   <li key={user.id}>
-                    <div className="font-bold bg-clo pl-2 mb-4">{user.word}</div>
-                    {user.def}
+                    <div className="font-bold bg-clo pl-2 mb-2">{user.word}</div>
+                    <div className="text-gray-700 font-bold mb-2"> APi: <span className="ml">{user.api}</span></div>
+                    <div className="text-gray-900 mb-4 flex flex-col"><span className="font-bold">Etimoloji:</span> {user.etymology}</div>
+                    <div className="text-gray-900 font-bold "><span className="ml">{user.nature}</span></div>
+                    <div className="text-gray-900 mb-4">{user.def}</div>
                     <h1 className="bg-clo h-1 mt-2 mb-2">_</h1>
-                    <div><span className="font-bold">Sinonim:</span> {user.sino}</div>
+                    <div><span className="font-bold">Sinonim:</span> {user.sino.map((sino:any) => (
+                      <a href={`/results?search=${sino}`} className="hover:text-blue-500 cursor-pointer">{sino}, </a>
+                    ))}</div>
                     <h1 className="bg-clo h-1 mt-2 mb-2">_</h1>
-                    <div><span className="font-bold">Kont: </span>{user.kont}</div>
+                    <div><span className="font-bold">Kont: </span>{user.kont.map((kont:any) => (
+                       <a href={`/results?search=${kont}`} className="hover:text-blue-500 cursor-pointer">{kont}, </a>
+                    ))}</div>
                   </li>
                 ))}
               </ul>

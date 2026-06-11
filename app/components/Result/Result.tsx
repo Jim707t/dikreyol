@@ -14,6 +14,7 @@ type user = {
   api:string
   etymology: string
   nature: string
+  exemple: string[]
   sino: string[]
   kont: string[]
 
@@ -57,7 +58,7 @@ function Result() {
       {/* Sa sipoze vinn on 2x2 grid*/}
       <div className="px-4">
         {/* Definisyon */}
-        <div className="bg-white rounded-lg shadow p-4 mb-4">
+        <div className="bg-white rounded-lg shadow p-4 mb-4 border">
           <h2 className="font-bold text-xl mb-3">Definisyon:</h2>
           <div className="text-lg">
             {loding ? (
@@ -65,20 +66,26 @@ function Result() {
             ) : fil.length > 0 ? (
               <ul className="md:text-lg text-sm">
                 {fil.map((user) => (
-                  <li key={user.id}>
-                    <div className="font-bold bg-clo pl-2 mb-2">{user.word}</div>
-                    <div className="text-gray-700 font-bold mb-2"> APi: <span className="ml">{user.api}</span></div>
+                  <li key={user.id} className="bg-clo rounded-2xl">
+                    <div className="font-bold  pl-5 mb-2">{user.word}</div>
+                    <div className=" bg-white p-4 rounded-2xl">
+                      <div className="text-gray-700 font-bold mb-2"> APi: <span className="ml">{user.api}</span></div>
                     <div className="text-gray-900 mb-4 flex flex-col"><span className="font-bold">Etimoloji:</span> {user.etymology}</div>
                     <div className="text-gray-900 font-bold "><span className="ml">{user.nature}</span></div>
                     <div className="text-gray-900 mb-4">{user.def}</div>
-                    <h1 className="bg-clo h-1 mt-2 mb-2">_</h1>
+                    <span className="ml text-gray-900 font-bold ">Exemple</span>
+                    <div>{user.exemple.map((ex:string,index:any) => (
+                      <div key={index}><span className="font-medium">{index+1}</span>-{ex},</div>
+                    ))}</div>
+                    <h1 className="bg-clo h-1 mt-2 mb-2 rounded-xl">_</h1>
                     <div><span className="font-bold">Sinonim:</span> {user.sino.map((sino:string) => (
                       <a href={`/results?search=${sino}`}key={sino} className="hover:text-blue-500 cursor-pointer">{sino}, </a>
                     ))}</div>
-                    <h1 className="bg-clo h-1 mt-2 mb-2">_</h1>
+                    <h1 className="bg-clo h-1 mt-2 mb-2 rounded-xl">_</h1>
                     <div><span className="font-bold">Kont: </span>{user.kont.map((kont:string) => (
                       <a href={`/results?search=${kont}`} key={kont} className="hover:text-blue-500 cursor-pointer">{kont}, </a>
                     ))}</div>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -88,17 +95,19 @@ function Result() {
           </div>
         </div>
         {/* Lot Mot */}
-        <div className="bg-white rounded-lg shadow p-4">
-          <h2 className="font-bold text-xl mb-3 bg-clo pl-2">Lot Mot:</h2>
-          <ul className="columns-2 md:columns-3 lg:columns-4">
+        <div className="bg-white rounded-lg shadow p-4 border-0.5">
+          <div className="bg-clo rounded-2xl">
+            <h2 className="font-bold text-xl mb-2 pl-5">Lot Mot:</h2>
+          <ul className="columns-2 md:columns-3 lg:columns-4 rounded-xl bg-white">
             {displayWords.map((user) => (
-              <li key={user.id}>
+              <li key={user.id} className="">
                 <a href={`/results?search=${user.word}`} className="hover:text-blue-500 cursor-pointer">
                   {user.word}
                 </a>
               </li>
             ))}
-          </ul>
+          </ul> 
+          </div>
             {/*button next - commented out until prev/next functions are implemented
           <div className="text-center italic ">
           {comb-1 > 0 ?<button className="mr-2 hover:text-[#6FE6FC]" onClick={prev}>avan</button>:null}

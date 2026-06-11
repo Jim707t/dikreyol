@@ -1,9 +1,63 @@
 @import 'tailwindcss';
 
+@theme {
+  /* Palette enspire pa drapo Ayiti a, sou yon fon papye cho */
+  --color-paper: #faf9f6;
+  --color-ink: #1b1f2a;
+  --color-ink-soft: #555d70;
+  --color-blueht: #00209f;
+  --color-blueht-deep: #001a7f;
+  --color-blueht-soft: #eef1fb;
+  --color-redht: #d21034;
+  --color-redht-soft: #fdeef1;
+  --color-gold: #f1b32b;
+  --color-sea: #0e8b94;
+  --color-palm: #1f8a4c;
+  --color-mist: #e7e9f0;
+
+  --font-display: var(--font-lora), Georgia, 'Times New Roman', serif;
+}
+
 :root {
-  --color-clo: #6FE6FC
+  /* legacy alias, kept so older components don't break */
+  --color-clo: #6fe6fc;
 }
 
 .bg-clo {
-  background-color: var(--color-clo);
+  background-color: var(--color-blueht-soft);
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* Ti liy twa-koulè (ble–wouj–lò) pou separe seksyon yo */
+.tricolor-rule {
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--color-blueht) 0 45%,
+    var(--color-redht) 45% 90%,
+    var(--color-gold) 90% 100%
+  );
+  border-radius: 9999px;
+}
+
+/* Ti pwen lò yo — yon souf vèvè/tap-tap an fon, san li pa chaje paj la */
+.kreyol-dots {
+  background-image:
+    radial-gradient(var(--color-gold) 1px, transparent 1.5px),
+    radial-gradient(var(--color-sea) 1px, transparent 1.5px);
+  background-size: 36px 36px, 36px 36px;
+  background-position: 0 0, 18px 18px;
+}
+
+/* Yon solèy dous dèyè kontni an */
+.sun-glow {
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--color-gold) 28%, transparent) 0%,
+    transparent 65%
+  );
 }
